@@ -86,16 +86,15 @@ public:
 
 			}
 		}
-
 		cout << d << endl;
 	}
+
 	void print(int data)
 	{
 		for (unsigned int i = 0; i < ls.size(); i++)
 		{
 			if (ls[i]->elem == data)
 			{
-
 				Node* temp = ls[i];
 
 				if (temp->child.size() == 0)
@@ -109,9 +108,7 @@ public:
 					cout << temp->child[j]->elem << " ";
 				}
 				cout << endl;
-				delete temp;
-
-				break;
+				return;
 			}
 		}
 	}
@@ -119,37 +116,37 @@ public:
 
 
 int main()
+
 {
 	Tree t;
-	int N, M, parent, child = -1;
+	int N, M, p, c;
 	cin >> N >> M;
-	cin >> parent;
-	Node* temp = new Node(parent);
-	t.root = temp;
-	t.ls.push_back(temp);
 
-	cin >> child;
-	while (child != 0)
+	cin >> p;
+	Node temp(p);
+	t.root = &temp;
+	t.ls.push_back(t.root);
+
+	cin >> c;
+	while (c != 0)
 	{
-		t.addNode(parent, child);
-		cin >> child;
+		t.addNode(p, c);
+		cin >> c;
 	}
 
 	for (int i = 1; i < N; i++)
 	{
-
-		cin >> parent;
-		cin >> child;
-		while (child != 0)
+		cin >> p >> c;
+		while (c != 0)
 		{
-			t.addNode(parent, child);
-			cin >> child;
+			t.addNode(p, c);
+			cin >> c;
 		}
 	}
 
 	for (int i = 0; i < M; i++)
 	{
-		cin >> parent;
-		t.print_depth(parent);
+		cin >> p;
+		t.print_depth(p);
 	}
 }
